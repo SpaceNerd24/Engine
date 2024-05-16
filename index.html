@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Engine Test</title>
+    <link rel="stylesheet" href="css/css.css">
+</head>
+<body>
+    <div id="id01" class="modal">
+        <div class="modal-content">
+            <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+            <span onclick="document.getElementById('console').innerHTML = ''" class="clear" title="Close Modal">&times;</span>
+            <div id="console">
+                <br>
+            </div>
+        </div>
+    </div>
+    <canvas id="gameCanvas"></canvas>
+
+    <!-- Correct placement of script tags -->
+    <script src="example.js"></script>
+    <script src="engine/js/Sprite.js"></script>
+    <script src="engine/js/InputManager.js"></script>
+    <script>
+        var modal = document.getElementById('id01');
+
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
+</body>
+</html>
