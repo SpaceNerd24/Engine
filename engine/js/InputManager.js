@@ -13,13 +13,14 @@ class InputManager {
             return;
         }
         this.keyBindings[key.toLowerCase()] = action;
+        consoleLog(`Key ${key} has been binded to: ${action}`);
     }
 
     handleKeyDown(event) {
         const key = event.key.toLowerCase();
         this.keysPressed[key] = true;
         if (this.keyBindings[key]) {
-            consoleLog(`Key ${key} pressed, performing action: ${this.keyBindings[key]}`);
+            //consoleLog(`Key ${key} pressed, performing action: ${this.keyBindings[key]}`);
             this.keyBindings[key]();
         }
     }

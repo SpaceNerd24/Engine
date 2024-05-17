@@ -1,11 +1,12 @@
 class Sprite {
-    constructor(imageUrl, width, height, posX, posY) {
+    constructor(imageUrl, width, height, posX, posY, id) {
         this.image = new Image();
         this.image.src = imageUrl;
         this.width = width;
         this.height = height;
         this.posX = posX;
         this.posY = posY;
+        this.id = id;
     }
 
     draw(ctx) {

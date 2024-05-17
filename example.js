@@ -5,43 +5,49 @@ window.onload = function() {
     const canvas = document.getElementById("gameCanvas");
     const ctx = canvas.getContext("2d");
     const inputManager = new InputManager();
+    const collisionManager = new CollisionManager();
+    let movementSpeed = 2;
+    let playerColliding = false;
 
     // Create a new sprite
-    const sprite = new Sprite("images/sprite.png", 32, 32, 100, 100);      
+    const sprite = new Sprite("assets/images/sprite.png", 32, 32, 100, 100, 'Player');
+    const CollisionTest = new Sprite('assets/images/CollisionTest.png', 32 , 32, 100, 50, 'Collision Test');
+
+    collisionManager.addEntity(sprite);
+    collisionManager.addEntity(CollisionTest);
 
     inputManager.bindKey("p", () => {
         document.getElementById('id01').style.display='block'
     })
 
     inputManager.bindKey("w", () => {
-        sprite.translate(0, -1);
+        sprite.translate(0, -movementSpeed);
     });
 
     inputManager.bindKey("s", () => {
-        sprite.translate(0, 1);
+        sprite.translate(0, movementSpeed);
     });
 
     inputManager.bindKey("a", () => {
-        sprite.translate(-1, 0);
+        sprite.translate(-movementSpeed, 0);
     })
 
     inputManager.bindKey("d", () => {
-        sprite.translate(1, 0);
+        sprite.translate(movementSpeed, 0);
     });
 
-    // Main game loop
     function gameLoop() {
-        // Clear the canvas
         ctx.clearRect(0, 0, canvas.width, canvas.height);
+        playerColliding = collisionManager.checkCollisions(sprite);
 
-        // Draw the sprite
         sprite.draw(ctx);
+        CollisionTest.draw(ctx);
 
-        // Request the next frame
+        //collisionManager.checkAllCollisions();
+
         requestAnimationFrame(gameLoop);
     }
 
-    // Start the game loop
     gameLoop();
 };
 
