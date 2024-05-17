@@ -7,7 +7,6 @@ window.onload = function() {
     const inputManager = new InputManager();
     const collisionManager = new CollisionManager();
     let movementSpeed = 2;
-    let playerColliding = false;
 
     // Create a new sprite
     const sprite = new Sprite("assets/images/sprite.png", 32, 32, 100, 100, 'Player');
@@ -38,12 +37,11 @@ window.onload = function() {
 
     function gameLoop() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
-        playerColliding = collisionManager.checkCollisions(sprite);
 
         sprite.draw(ctx);
         CollisionTest.draw(ctx);
 
-        //collisionManager.checkAllCollisions();
+        collisionManager.checkAllCollisions();
 
         requestAnimationFrame(gameLoop);
     }

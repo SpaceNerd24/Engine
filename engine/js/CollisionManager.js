@@ -8,12 +8,25 @@ class CollisionManager {
     }
 
     checkAllCollisions() {
+        let displacementFactor = 15;
         for (let i = 0; i < this.entities.length; i++) {
             const entityA = this.entities[i];
             for (let j = i + 1; j < this.entities.length; j++) {
                 const entityB = this.entities[j];
                 if (this.isColliding(entityA, entityB)) {
-                    consoleLog('Collision detected between entities:' + entityA.id + entityB.id);
+                    // Handle collision by adjusting sprite positions
+                    const dx = entityA.posX - entityB.posX;
+                    const dy = entityA.posY - entityB.posY;
+
+                    // Move entityA away from entityB
+                    entityA.posX += dx / displacementFactor;
+                    entityA.posY += dy / displacementFactor;
+
+                    // Move entityB away from entityA
+                    entityB.posX -= dx / displacementFactor;
+                    entityB.posY -= dy / displacementFactor;
+
+                    console.log('Collision detected between entities:', entityA.id, entityB.id);
                 }
             }
         }
