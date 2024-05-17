@@ -8,35 +8,42 @@ window.onload = function() {
     const collisionManager = new CollisionManager();
     let movementSpeed = 2;
 
-    // Create a new sprite
-    const player = new Sprite("assets/images/sprite.png", 32, 32, 100, 100, 'Player');
-    const PlayerHitbox = new Sprite('assets/images/CollisionTest.png', 16 , 16, 100, 100, 'PlayerHitbox');
-    const CollisionTest = new Sprite('assets/images/CollisionTest.png', 32 , 32, 100, 50, 'Collision Test');
-    const CollisionTest2 = new Sprite('assets/images/CollisionTest.png', 32 , 32, 50, 100, 'Collision Test2');
+    const spriteImageUrls = [
+        "assets/images/Player-1.png",
+        "assets/images/Player-2.png",
+        "assets/images/Player-3.png",
+        "assets/images/Player-4.png",
+    ];
 
-    //collisionManager.addEntity(sprite);
-    collisionManager.addEntity(PlayerHitbox);
+    // Create a new sprite
+    const player = new Sprite("assets/images/sprite.png", 32, 32, 200, 100, 'Player');
+    const CollisionTest = new Sprite('assets/images/CollisionTest.png', 32 , 32, 50, 50, 'Collision Test');
+    const CollisionTest2 = new Sprite('assets/images/CollisionTest.png', 32 , 32, 50, 100, 'Collision Test2');
+    const AnimatedPlayer = new AnimatedSprite(spriteImageUrls, 32, 32, 150, 100, 'AnimatedPlayer', 250);
+
+    collisionManager.addEntity(player);
     collisionManager.addEntity(CollisionTest);
     collisionManager.addEntity(CollisionTest2);
+    collisionManager.addEntity(AnimatedPlayer);
 
     inputManager.bindKey("p", () => {
         document.getElementById('id01').style.display='block'
     })
 
     inputManager.bindKey("w", () => {
-        player.translate(0, -movementSpeed);
+        AnimatedPlayer.translate(0, -movementSpeed);
     });
 
     inputManager.bindKey("s", () => {
-        player.translate(0, movementSpeed);
+        AnimatedPlayer.translate(0, movementSpeed);
     });
 
     inputManager.bindKey("a", () => {
-        player.translate(-movementSpeed, 0);
+        AnimatedPlayer.translate(-movementSpeed, 0);
     })
 
     inputManager.bindKey("d", () => {
-        player.translate(movementSpeed, 0);
+        AnimatedPlayer.translate(movementSpeed, 0);
     });
 
     function gameLoop() {
@@ -45,9 +52,7 @@ window.onload = function() {
         player.draw(ctx);
         CollisionTest.draw(ctx);
         CollisionTest2.draw(ctx);
-        //PlayerHitbox.draw(ctx); Does not need to be rendered since its a htibox
-
-        PlayerHitbox.setPosition(player.posX + 8, player.posY + 8);
+        AnimatedPlayer.draw(ctx);
 
         collisionManager.checkAllCollisions();
 
