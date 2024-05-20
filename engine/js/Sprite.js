@@ -10,6 +10,7 @@ class Sprite {
     }
 
     draw(ctx) {
+        ctx.imageSmoothingEnabled = false;
         ctx.drawImage(this.image, this.posX, this.posY, this.width, this.height);
     }
 
@@ -21,5 +22,10 @@ class Sprite {
     translate(x, y) {
         this.posX += x;
         this.posY += y;
+    }
+
+    setScale(scale) {
+        this.width *= scale;
+        this.height *= scale;
     }
 }

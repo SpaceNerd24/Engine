@@ -1,16 +1,16 @@
 class TextManager {
-    constructor(canvasContext) {
+    constructor() {
         this.textObjects = [];
     }
 
-    addText(text, xpos, ypos) {
-        const textObj = { text, xpos, ypos};
+    addText(text, xpos, ypos, fontSize) {
+        const textObj = { text, xpos, ypos, fontSize};
         this.textObjects.push(textObj);
     }
 
     drawText(ctx) {
         for (const textObj of this.textObjects) {
-            ctx.font = "24px Arial";
+            ctx.font = `${textObj.fontSize}px Arial`;
             ctx.fillStyle = "black";
             ctx.fillText(textObj.text, textObj.xpos, textObj.ypos);
         }

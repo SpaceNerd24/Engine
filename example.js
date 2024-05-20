@@ -10,48 +10,45 @@ window.onload = function() {
     const textManager = new TextManager();
     let movementSpeed = 2;
 
-    const player = new Sprite("assets/images/sprite.png", 32, 32, 200, 100, 'Player');
     const CollisionTest = new Sprite('assets/images/CollisionTest.png', 32 , 32, 50, 50, 'Collision Test');
-    const CollisionTest2 = new Sprite('assets/images/CollisionTest.png', 32 , 32, 50, 100, 'Collision Test 2');
-    const AnimatedPlayer = new Sprite("assets/images/Player-4.png", 32, 32, 150, 100, 'AnimatedPlayer');
+    const Player = new Sprite("assets/images/Player-4.png", 32, 32, 150, 100, 'Player');
 
-    textManager.addText("This Is Text", 100, 100);
+    textManager.addText("Test Text", 100, 100, 25);
 
-    collisionManager.addEntity(player);
     collisionManager.addEntity(CollisionTest);
-    collisionManager.addEntity(CollisionTest2);
-    collisionManager.addEntity(AnimatedPlayer);
+    collisionManager.addEntity(Player);
 
     audioManager.loadSoundEffect('assets/sounds/WinError.mp3');
     audioManager.loadSoundEffect('assets/sounds/android-notif.mp3');
 
     inputManager.bindKey("w", () => {
-        AnimatedPlayer.translate(0, -movementSpeed);
+        Player.translate(0, -movementSpeed);
     });
 
     inputManager.bindKey("s", () => {
-        AnimatedPlayer.translate(0, movementSpeed);
+        Player.translate(0, movementSpeed);
     });
 
     inputManager.bindKey("a", () => {
-        AnimatedPlayer.translate(-movementSpeed, 0);
+        Player.translate(-movementSpeed, 0);
     })
 
     inputManager.bindKey("d", () => {
-        AnimatedPlayer.translate(movementSpeed, 0);
+        Player.translate(movementSpeed, 0);
     });
 
     function gameLoop() {
+        ctx.save();
         ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-        player.draw(ctx);
         CollisionTest.draw(ctx);
-        CollisionTest2.draw(ctx);
-        AnimatedPlayer.draw(ctx);
-
-        collisionManager.checkAllCollisions();
+        Player.draw(ctx);
+        
+        ctx.restore();
 
         textManager.drawText(ctx);
+        
+        collisionManager.checkAllCollisions();
 
         if (inputManager.isKeyUp("shift")) {
             movementSpeed = 2;
@@ -59,7 +56,7 @@ window.onload = function() {
         if (inputManager.isKeyPressed("shift")) {
             movementSpeed = 3;
         }
-
+        
         requestAnimationFrame(gameLoop);
     }
 
