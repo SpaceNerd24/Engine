@@ -4,18 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Engine Test</title>
-    <link rel="stylesheet" href="assets/css/css.css">
 </head>
 <body>
-    <div id="id01" class="modal">
-        <div class="modal-content">
-            <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
-            <span onclick="document.getElementById('console').innerHTML = ''" class="clear" title="Close Modal">&times;</span>
-            <div id="console">
-                <br>
-            </div>
-        </div>
-    </div>
     <canvas id="gameCanvas"></canvas>
 
     <!-- Correct placement of script tags -->
@@ -25,6 +15,8 @@
     <script src="engine/js/CollisionManager.js"></script>
     <script src="engine/js/AudioManager.js"></script>
     <script src="engine/js/AnimatedSprite.js"></script>
+    <script src="engine/js/PlayerSprite.js"></script>
+    <script src="engine/js/Engine.js"></script>
     <script>
         var modal = document.getElementById('id01');
 

@@ -1,4 +1,4 @@
-const devConsole = document.getElementById("console");
+// const devConsole = document.getElementById("console");
 window.onload = function() {
 
     // Get the canvas element and its 2D rendering context
@@ -9,18 +9,11 @@ window.onload = function() {
     const audioManager = new AudioManager();
     let movementSpeed = 2;
 
-    const spriteImageUrls = [
-        "assets/images/Player-1.png",
-        "assets/images/Player-2.png",
-        "assets/images/Player-3.png",
-        "assets/images/Player-4.png",
-    ];
-
     // Create a new sprite
     const player = new Sprite("assets/images/sprite.png", 32, 32, 200, 100, 'Player');
     const CollisionTest = new Sprite('assets/images/CollisionTest.png', 32 , 32, 50, 50, 'Collision Test');
     const CollisionTest2 = new Sprite('assets/images/CollisionTest.png', 32 , 32, 50, 100, 'Collision Test 2');
-    const AnimatedPlayer = new AnimatedSprite(spriteImageUrls, 32, 32, 150, 100, 'AnimatedPlayer', 100);
+    const AnimatedPlayer = new Sprite("assets/images/Player-4.png", 32, 32, 150, 100, 'AnimatedPlayer');
 
     collisionManager.addEntity(player);
     collisionManager.addEntity(CollisionTest);
@@ -30,12 +23,8 @@ window.onload = function() {
     audioManager.loadSoundEffect('assets/sounds/WinError.mp3');
     audioManager.loadSoundEffect('assets/sounds/android-notif.mp3');
 
-    inputManager.bindKey("p", () => {
-        document.getElementById('id01').style.display='block'
-    })
-
     inputManager.bindKey("w", () => {
-        AnimatedPlayer.translate(0, -movementSpeed);
+        AnimatedPlayer.translate(0, movementSpeed);
     });
 
     inputManager.bindKey("s", () => {
@@ -65,7 +54,3 @@ window.onload = function() {
 
     gameLoop();
 };
-
-function consoleLog(text) {
-    devConsole.innerHTML += text + "<br>";
-}
