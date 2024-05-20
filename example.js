@@ -7,13 +7,15 @@ window.onload = function() {
     const inputManager = new InputManager();
     const collisionManager = new CollisionManager();
     const audioManager = new AudioManager();
+    const textManager = new TextManager();
     let movementSpeed = 2;
 
-    // Create a new sprite
     const player = new Sprite("assets/images/sprite.png", 32, 32, 200, 100, 'Player');
     const CollisionTest = new Sprite('assets/images/CollisionTest.png', 32 , 32, 50, 50, 'Collision Test');
     const CollisionTest2 = new Sprite('assets/images/CollisionTest.png', 32 , 32, 50, 100, 'Collision Test 2');
     const AnimatedPlayer = new Sprite("assets/images/Player-4.png", 32, 32, 150, 100, 'AnimatedPlayer');
+
+    textManager.addText("This Is Text", 100, 100);
 
     collisionManager.addEntity(player);
     collisionManager.addEntity(CollisionTest);
@@ -24,7 +26,7 @@ window.onload = function() {
     audioManager.loadSoundEffect('assets/sounds/android-notif.mp3');
 
     inputManager.bindKey("w", () => {
-        AnimatedPlayer.translate(0, movementSpeed);
+        AnimatedPlayer.translate(0, -movementSpeed);
     });
 
     inputManager.bindKey("s", () => {
@@ -48,6 +50,15 @@ window.onload = function() {
         AnimatedPlayer.draw(ctx);
 
         collisionManager.checkAllCollisions();
+
+        textManager.drawText(ctx);
+
+        if (inputManager.isKeyUp("shift")) {
+            movementSpeed = 2;
+        }
+        if (inputManager.isKeyPressed("shift")) {
+            movementSpeed = 3;
+        }
 
         requestAnimationFrame(gameLoop);
     }

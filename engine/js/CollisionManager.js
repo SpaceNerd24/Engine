@@ -8,7 +8,7 @@ class CollisionManager {
     }
 
     checkAllCollisions() {
-        let displacementFactor = 15;
+        let displacementFactor = 25;
         for (let i = 0; i < this.entities.length; i++) {
             const entityA = this.entities[i];
             for (let j = i + 1; j < this.entities.length; j++) {

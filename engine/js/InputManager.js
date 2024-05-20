@@ -49,4 +49,9 @@ class InputManager {
     isKeyPressed(key) {
         return !!this.keysPressed[key.toLowerCase()];
     }
+
+    
+    isKeyUp(key) {
+        return !this.keysPressed[key.toLowerCase()];
+    }
 }
