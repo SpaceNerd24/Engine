@@ -6,6 +6,7 @@ window.onload = function() {
     const ctx = canvas.getContext("2d");
     const inputManager = new InputManager();
     const collisionManager = new CollisionManager();
+    const audioManager = new AudioManager();
     let movementSpeed = 2;
 
     const spriteImageUrls = [
@@ -18,13 +19,16 @@ window.onload = function() {
     // Create a new sprite
     const player = new Sprite("assets/images/sprite.png", 32, 32, 200, 100, 'Player');
     const CollisionTest = new Sprite('assets/images/CollisionTest.png', 32 , 32, 50, 50, 'Collision Test');
-    const CollisionTest2 = new Sprite('assets/images/CollisionTest.png', 32 , 32, 50, 100, 'Collision Test2');
-    const AnimatedPlayer = new AnimatedSprite(spriteImageUrls, 32, 32, 150, 100, 'AnimatedPlayer', 250);
+    const CollisionTest2 = new Sprite('assets/images/CollisionTest.png', 32 , 32, 50, 100, 'Collision Test 2');
+    const AnimatedPlayer = new AnimatedSprite(spriteImageUrls, 32, 32, 150, 100, 'AnimatedPlayer', 100);
 
     collisionManager.addEntity(player);
     collisionManager.addEntity(CollisionTest);
     collisionManager.addEntity(CollisionTest2);
     collisionManager.addEntity(AnimatedPlayer);
+
+    audioManager.loadSoundEffect('assets/sounds/WinError.mp3');
+    audioManager.loadSoundEffect('assets/sounds/android-notif.mp3');
 
     inputManager.bindKey("p", () => {
         document.getElementById('id01').style.display='block'
