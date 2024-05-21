@@ -8,18 +8,24 @@ window.onload = function() {
     const collisionManager = new CollisionManager();
     const audioManager = new AudioManager();
     const textManager = new TextManager();
-    let movementSpeed = 2;
+    const particleManager = new ParticleManager();
+    let movementSpeed;
+    let dt = 1;
 
     const CollisionTest = new Sprite('assets/images/CollisionTest.png', 32 , 32, 50, 50, 'Collision Test');
     const Player = new Sprite("assets/images/Player-4.png", 32, 32, 150, 100, 'Player');
 
     collisionManager.addEntity(CollisionTest);
     collisionManager.addEntity(Player);
-
-    textManager.addText('Hello World', 50, 50, 50);
+    
+    textManager.addText('Hello World', 100, 50, 20);
 
     audioManager.loadSoundEffect('assets/sounds/WinError.mp3');
     audioManager.loadSoundEffect('assets/sounds/android-notif.mp3');
+    
+    inputManager.bindKey("q", () => {
+        particleManager.createParticle(100, 100, 0, 0, 10000000, 'black', 1);
+    });
 
     inputManager.bindKey("w", () => {
         Player.translate(0, -movementSpeed);
@@ -44,6 +50,9 @@ window.onload = function() {
         Player.draw(ctx);
         
         textManager.drawText(ctx);
+
+        particleManager.updateParticles(dt);
+        particleManager.renderParticles(ctx);
 
         collisionManager.checkAllCollisions();
 

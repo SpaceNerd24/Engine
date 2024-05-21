@@ -54,4 +54,14 @@ class InputManager {
     isKeyUp(key) {
         return !this.keysPressed[key.toLowerCase()];
     }
+
+    getMouseX(canvas, evt) {
+        const rect = canvas.getBoundingClientRect();
+        return evt.clientX - rect.left;
+    }
+    
+    getMouseY(canvas, evt) {
+        const rect = canvas.getBoundingClientRect();
+        return evt.clientY - rect.top;
+    }
 }
