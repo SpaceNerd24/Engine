@@ -13,10 +13,10 @@ window.onload = function() {
     const CollisionTest = new Sprite('assets/images/CollisionTest.png', 32 , 32, 50, 50, 'Collision Test');
     const Player = new Sprite("assets/images/Player-4.png", 32, 32, 150, 100, 'Player');
 
-    textManager.addText("Test Text", 100, 100, 25);
-
     collisionManager.addEntity(CollisionTest);
     collisionManager.addEntity(Player);
+
+    textManager.addText('Hello World', 50, 50, 50);
 
     audioManager.loadSoundEffect('assets/sounds/WinError.mp3');
     audioManager.loadSoundEffect('assets/sounds/android-notif.mp3');
@@ -38,16 +38,13 @@ window.onload = function() {
     });
 
     function gameLoop() {
-        ctx.save();
         ctx.clearRect(0, 0, canvas.width, canvas.height);
 
         CollisionTest.draw(ctx);
         Player.draw(ctx);
         
-        ctx.restore();
-
         textManager.drawText(ctx);
-        
+
         collisionManager.checkAllCollisions();
 
         if (inputManager.isKeyUp("shift")) {

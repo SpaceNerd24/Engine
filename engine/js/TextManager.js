@@ -4,7 +4,7 @@ class TextManager {
     }
 
     addText(text, xpos, ypos, fontSize) {
-        const textObj = { text, xpos, ypos, fontSize};
+        const textObj = { text, xpos, ypos, fontSize };
         this.textObjects.push(textObj);
     }
 
