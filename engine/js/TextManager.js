@@ -1,3 +1,5 @@
+/* The TextManager class manages text objects with properties such as text content, position, and font
+size, and provides methods to add and draw text on a canvas context. */
 class TextManager {
     constructor() {
         this.textObjects = [];

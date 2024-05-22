@@ -1,3 +1,5 @@
+/* The Particle class represents a particle with position, velocity, lifespan, color, and radius
+properties, and includes a method to update its position based on a given time increment. */
 class Particle {
     constructor(x, y, velocityX, velocityY, lifespan, color, radius) {
         this.x = x;
@@ -16,6 +18,8 @@ class Particle {
     }
 }
 
+/* The ParticleManager class manages particles with properties such as position, velocity, lifespan,
+color, and radius, providing methods to create, update, and render them. */
 class ParticleManager {
     constructor() {
         this.particles = [];

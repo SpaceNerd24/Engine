@@ -1,3 +1,5 @@
+/* The InputManager class in JavaScript handles key bindings, key events, and mouse coordinates for
+user input. */
 class InputManager {
     constructor() {
         this.keyBindings = {};
@@ -8,6 +10,9 @@ class InputManager {
     }
 
     bindKey(key, action) {
+        /* This code checks if the key being bound is one of the specified keys
+        ("space", "p", "equals", "minue", "plus") and if so, it logs an error message with a
+        corresponding error code and then returns from the function without binding the key. */
         if (key.toLowerCase() === "space") {
             consoleLog("Error Code 1");
             return;
@@ -36,7 +41,6 @@ class InputManager {
         const key = event.key.toLowerCase();
         this.keysPressed[key] = true;
         if (this.keyBindings[key]) {
-            //consoleLog(`Key ${key} pressed, performing action: ${this.keyBindings[key]}`);
             this.keyBindings[key]();
         }
     }
@@ -46,6 +50,8 @@ class InputManager {
         this.keysPressed[key] = false;
     }
 
+    /* These two methods in the `InputManager` class are used to check the status of a specific key in the
+    `keysPressed` object. */
     isKeyPressed(key) {
         return !!this.keysPressed[key.toLowerCase()];
     }

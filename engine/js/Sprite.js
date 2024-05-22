@@ -1,3 +1,5 @@
+/* The Sprite class in JavaScript represents an image element with properties for position, size, and
+methods for drawing and transforming. */
 class Sprite {
     constructor(imageUrl, width, height, posX, posY, id) {
         this.image = new Image();

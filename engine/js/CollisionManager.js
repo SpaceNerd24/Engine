@@ -1,3 +1,4 @@
+/* The CollisionManager class manages collision detection and resolution between entities in a game. */
 class CollisionManager {
     constructor() {
         this.entities = []; // Store all entities that need collision checks
