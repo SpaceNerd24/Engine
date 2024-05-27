@@ -12,41 +12,25 @@ window.onload = function() {
     const particleManager = new ParticleManager();
     const spriteManager = new SpriteManager();
 
-    let movementSpeed;
+    let movementSpeed = 1;
     let dt = 1;
+
 
     const CollisionTest = new Sprite('assets/images/CollisionTest.png', 32 , 32, 50, 50, 'Collision Test');
     const Player = new Sprite("assets/images/Player-4.png", 32, 32, 150, 100, 'Player');
 
+    spriteManager.addSprite(Player);
     spriteManager.addSprite(CollisionTest);
+    
+    const CameraTest = new Camera(spriteManager, textManager, inputManager, false, movementSpeed, Player);
 
     collisionManager.addEntity(CollisionTest);
     collisionManager.addEntity(Player);
-    
+        
     textManager.addText('Hello World', 100, 50, 20);
 
     audioManager.loadSoundEffect('assets/sounds/WinError.mp3');
     audioManager.loadSoundEffect('assets/sounds/android-notif.mp3');
-
-    inputManager.bindKey("s", () => {
-        spriteManager.translateSprites(0, -movementSpeed);
-        textManager.translateText(0, -movementSpeed);
-    });
-
-    inputManager.bindKey("w", () => {
-        spriteManager.translateSprites(0, movementSpeed);
-        textManager.translateText(0, movementSpeed);
-    });
-
-    inputManager.bindKey("d", () => {
-        spriteManager.translateSprites(-movementSpeed, 0);
-        textManager.translateText(-movementSpeed, 0);
-    })
-
-    inputManager.bindKey("a", () => {
-        spriteManager.translateSprites(movementSpeed, 0);
-        textManager.translateText(movementSpeed, 0);
-    });
 
     function gameLoop() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -59,15 +43,6 @@ window.onload = function() {
         particleManager.renderParticles(ctx);
 
         collisionManager.checkAllCollisions();
-
-        if (inputManager.isKeyUp("shift")) {
-            movementSpeed = 2;
-        }
-        if (inputManager.isKeyPressed("shift")) {
-            movementSpeed = 3;
-        }
-
-        Player.draw(ctx);
         
         requestAnimationFrame(gameLoop);
     }
