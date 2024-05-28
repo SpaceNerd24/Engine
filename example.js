@@ -15,6 +15,7 @@ window.onload = function() {
     let movementSpeed = 1;
     let dt = 1;
 
+    let timePassed = 0;
     let fps = 0;
     const times = [];
 
@@ -48,6 +49,12 @@ window.onload = function() {
         times.push(now);
 
         fps = times.length;
+        
+        timePassed++;
+
+        if (fps <= 20 && timePassed >= 50) {
+            consoleLog("FPS is too low for VEngine to function please speed up your game, FPS:" + fps);
+        }
 
         textManager.changeText("fps", "FPS: " + fps);
 

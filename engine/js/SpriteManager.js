@@ -8,7 +8,7 @@ class SpriteManager {
     addSprite(sprite) {
         if (!this.removedSprites.some(removedSprite => removedSprite.id === sprite.id)) {
             this.sprites.push(sprite);
-            consoleLog("Added sprite " + sprite.id);
+            //consoleLog("Added sprite " + sprite.id);
         } else {
             consoleLog("Sprite with ID " + sprite.id + " was removed and cannot be added again.");
         }
@@ -19,9 +19,9 @@ class SpriteManager {
         if (removedSprite) {
             this.removedSprites.push(removedSprite);
             this.sprites = this.sprites.filter(sprite => sprite.id !== id);
-            consoleLog("Removed sprite " + id);
+            //consoleLog("Removed sprite " + id);
         } else {
-            consoleLog("Sprite with ID " + id + " not found.");
+            //consoleLog("Sprite with ID " + id + " not found.");
         }
     }
 
