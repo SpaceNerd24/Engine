@@ -17,7 +17,7 @@ window.onload = function() {
 
 
     const CollisionTest = new Sprite('assets/images/CollisionTest.png', 32 , 32, 50, 50, 'Collision Test');
-    const Player = new Sprite("assets/images/Player-4.png", 32, 32, 150, 100, 'Player');
+    const Player = new Sprite("assets/images/Player-4.png", 32, 32, 125, 60, 'Player');
 
     spriteManager.addSprite(Player);
     spriteManager.addSprite(CollisionTest);
