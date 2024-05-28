@@ -15,30 +15,48 @@ window.onload = function() {
     let movementSpeed = 1;
     let dt = 1;
 
+    let fps = 0;
+    const times = [];
 
-    const CollisionTest = new Sprite('assets/images/CollisionTest.png', 32 , 32, 50, 50, 'Collision Test');
+
     const Player = new Sprite("assets/images/Player-4.png", 32, 32, 125, 60, 'Player');
 
     spriteManager.addSprite(Player);
-    spriteManager.addSprite(CollisionTest);
     
     const CameraTest = new Camera(spriteManager, textManager, inputManager, false, movementSpeed, Player);
 
-    collisionManager.addEntity(CollisionTest);
     collisionManager.addEntity(Player);
         
-    textManager.addText('Hello World', 100, 50, 20);
+    textManager.addText('Hello World', 100, 50, 20, "helloworld");
+    textManager.addText('FPS: ' + fps, 100, 100, 20, "fps");
 
     audioManager.loadSoundEffect('assets/sounds/WinError.mp3');
     audioManager.loadSoundEffect('assets/sounds/android-notif.mp3');
 
+    inputManager.bindKey('q', () => {
+        let newSprite = new Sprite('assets/images/CollisionTest.png', 32 , 32, 50, 50, 'Collision');
+        spriteManager.addSprite(newSprite);
+        collisionManager.addEntity(newSprite);
+    })
+
     function gameLoop() {
+        const now = performance.now();
+
+        while (times.length > 0 && times[0] <= now - 1000) {
+            times.shift();
+        }
+        times.push(now);
+
+        fps = times.length;
+
+        textManager.changeText("fps", "FPS: " + fps);
+
         ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        textManager.drawText(ctx);
 
         spriteManager.drawAll(ctx);
         
-        textManager.drawText(ctx);
-
         particleManager.updateParticles(dt);
         particleManager.renderParticles(ctx);
 

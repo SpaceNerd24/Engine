@@ -3,8 +3,8 @@ class TextManager {
         this.textObjects = [];
     }
 
-    addText(text, xpos, ypos, fontSize) {
-        const textObj = { text, xpos, ypos, fontSize };
+    addText(text, xpos, ypos, fontSize, id) {
+        const textObj = { text, xpos, ypos, fontSize, id };
         this.textObjects.push(textObj);
     }
 
@@ -21,5 +21,12 @@ class TextManager {
             textObj.xpos += dx;
             textObj.ypos += dy;
         });
+    }
+
+    changeText(id, newText) {
+        const textObj = this.textObjects.find(textObj => textObj.id === id);
+        if (textObj) {
+            textObj.text = newText;
+        }
     }
 }
